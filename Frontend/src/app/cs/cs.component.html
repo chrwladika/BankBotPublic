@@ -1,0 +1,32 @@
+<div>
+  <select #categorySelect (change)="onCategoryChange(categorySelect.value)">
+    <option value="None">None</option>
+    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+  </select>
+</div>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Telefonnummer</th>
+    <th style="max-width: 20%;">Grund des Anrufs</th>
+    <th>Kategorie</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let item of items">
+    <!-- Display each item here -->
+    <td>{{ item.customer_firstname + " " + item.customer_lastname }}</td>
+    <td>{{item.telephone}}</td>
+    <td>{{item.request}}</td>
+    <td>{{item.topic}}
+    <td><button>Call</button></td>
+  </tr>
+</table>
+
+<div *ngIf="maximumPages > 1">
+  <button *ngFor="let page of [].constructor(maximumPages); let i = index"
+          [class.active]="i + 1 === page"
+          (click)="onPageChange(i + 1)">
+    {{ i + 1 }}
+  </button>
+</div>
